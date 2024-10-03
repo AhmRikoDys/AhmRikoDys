@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2em;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5em;
+            font-size: 2em;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5em;
+            display: block;
+            color: #e0e0e0;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 0.75em;
+            margin-bottom: 1.25em;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            outline: none;
+        }
+        input[type="submit"] {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 0.75em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+        input[type="submit"]:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        p {
+            text-align: center;
+            color: #ffcccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Registrasi</h2>
+        <!-- <?php
+        if (!empty($error)) {
+            echo "<p style='color:red;'>$error</p>";
+        }
+        if (!empty($success)) {
+            echo "<p style='color:green;'>$success</p>";
+        }
+        ?> -->
+        <form action="login.php" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm_password">Konfirmasi Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
