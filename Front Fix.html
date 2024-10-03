@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Online Shop</title>
+    <style>
+        /* CSS styles here */
+        body {
+            font-family: Arial, sans-serif, 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #sidebar {
+            background-color: #333;
+            color: #fff;
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+
+        #sidebar h1 {
+            margin: 0;
+            font-size: 24px;
+            padding: 0 20px;
+        }
+
+        #sidebar nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        #sidebar nav ul li {
+            margin-bottom: 10px;
+        }
+
+        #sidebar nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #sidebar nav ul li a:hover {
+            background-color: #555;
+        }
+
+        main {
+            margin-left: 220px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 48px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .product p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .product button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product button:hover {
+            background-color: #555;
+        }
+
+        .cart {
+            position: fixed;
+            top: 480px;
+            left: 20px;
+            background-color: #aa9100;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart h2 {
+            margin-top: 0;
+        }
+
+        .cart ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .cart li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .cart p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .login-register {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .login-register a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 16px;
+        }
+
+        .login-register a:hover {
+            background-color: #777;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .login-options button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            background-color: #555;
+        }
+
+        .login-options button:hover {
+            background-color: #555;
+        }
+
+        /* New styles for payment and shipping */
+        .payment-shipping {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-shipping h2 {
+            margin-top: 0;
+        }
+
+        .payment-shipping label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .payment-shipping input[type="text"],
+        .payment-shipping input[type="email"],
+        .payment-shipping select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .payment-shipping input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #333; 
+            padding: 20px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-shipping input[type="submit"]:hover {
+            background-color: #555;
+        }
+        body {
+    background-image: url("bioskop.png");
+    background-size: cover; 
+    background-position: center; 
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+    max-width: auto; 
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h1>Menu</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <section class="contact">
+                    <h2>Contact Us</h2>
+                    <div class="contact-info">
+                        <ul>
+                            <li><a href="https://wa.me/08871536731">WhatsApp</a></li>
+                            <li><a href="https://www.instagram.com/ar_dyansyah19/">Instagram</a></li>
+                            <li><a href="mailto:info@myonlineshop.com">Email</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </ul>
+        </div>
+    </div>
+    
+
+    <main>
+        <header>
+            <img src="th.jpg" alt="My Online Shop Logo" class="logo">
+        </header>
+
+        <section class="product">
+            <img src="product1.jpg" alt="Produk 1">
+            <h2>Produk 1</h2>
+            <p>Penjelasan Produk 1</p>
+            <p>Price: Rp.25.000</p>
+            <button data-price="25000">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product1.jpg" alt="Produk 2">
+            <h2>Produk 2</h2>
+            <p>Penjelasan Produk 2</p>
+            <p>Price: Rp.30.000</p>
+            <button data-price="30000">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product1.jpg" alt="Produk 3">
+            <h2>Produk 3</h2>
+            <p>Penjelasan Produk 3</p>
+            <p>Price: Rp.35.000</p>
+            <button data-price="35000">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product1.jpg" alt="Produk 4">
+            <h2>Produk 4</h2>
+            <p>Penjelasan Produk 4</p>
+            <p>Price: Rp.40.000</p>
+            <button data-price="40000">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product1.jpg" alt="Produk 5">
+            <h2>Produk 5</h2>
+            <p>Penjelasan Produk 5</p>
+            <p>Price: Rp.45.000</p>
+            <button data-price="45000">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product1.jpg" alt="Produk 6">
+            <h2>Produk 6</h2>
+            <p>Penjelasan Produk 6</p>
+            <p>Price: Rp.50.000</p>
+            <button data-price="50000">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product1.jpg" alt="Produk 7">
+            <h2>Produk 7</h2>
+            <p>Penjelasan Produk 7</p>
+            <p>Price: Rp.55.000</p>
+            <button data-price="55000">Add to Cart</button>
+        </section>
+
+
+        <div class="payment-shipping">
+            <h2>Payment and Shipping</h2>
+            <form id="payment-form">
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Enter your card number">
+
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY">
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="Enter CVV">
+
+                <label for="shipping-address">Shipping Address:</label>
+                <input type="text" id="shipping-address" name="shipping-address" placeholder="Enter your shipping address">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address">
+
+                <input type="submit" value="Submit Payment">
+            </form>
+        </div>
+    </main>
+
+    <div class="cart">
+        <h2>Keranjang Belanja</h2>
+        <ul id="cart-items">
+
+        </ul>
+        <p id="total">Total: Rp0</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My Online Shop</p>
+    </footer>
+
+    <div class="login-register">
+        <a href="login.html">Login</a>
+        <a href="#">Register</a>
+        <div class="login-register">
+            <div class="login-options">
+                <button onclick="loginWithFacebook()">Login with Facebook</button>
+                <button onclick="loginWithGoogle()">Login with Google</button>
+                <button onclick="loginWithInstagram()">Login with Instagram</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addToCartButtons = document.querySelectorAll('.product button[data-price]');
+            const cartItems = document.getElementById('cart-items');
+            const totalElement = document.getElementById('total');
+            let total = 0;
+    
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const price = parseInt(button.getAttribute('data-price'));
+                    const productName = button.previousElementSibling.previousElementSibling.innerText;
+                    total += price;
+                    updateCart(productName, price);
+                });
+            });
+    
+            function updateCart(productName, price) {
+                const listItem = document.createElement('li');
+                listItem.textContent = 'Product: ' + productName + ', Price: Rp' + price;
+                cartItems.appendChild(listItem);
+                totalElement.textContent = 'Total: Rp' + total;
+            }
+        });
+    </script>
+      
+</body>
+</html>
